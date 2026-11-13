@@ -1,0 +1,47 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+
+# Local env and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Go
+/backend/bin/
+/backend/tmp/
+*.exe
+*.test
+*.out
+coverage.*
+go.work
+go.work.sum
+
+# Frontend
+node_modules/
+/frontend/dist/
+/frontend/coverage/
+*.tsbuildinfo
+.vite/
+*.local
+
+# Backend embeds the SPA build; produced by the build, never committed
+/backend/web/dist/
+
+# Bicep build output (ARM JSON)
+/infra/**/*.json
+!/infra/bicepconfig.json
+
+# Azure CLI / azd local state
+.azure/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
