@@ -6,6 +6,9 @@
 !.vscode/extensions.json
 *.swp
 
+# Learning plan and notes (local only)
+.specs/
+
 # Local env and secrets
 .env
 .env.*
@@ -30,9 +33,6 @@ node_modules/
 *.tsbuildinfo
 .vite/
 *.local
-
-# Backend embeds the SPA build; produced by the build, never committed
-/backend/web/dist/
 
 # Bicep build output (ARM JSON)
 /infra/**/*.json
