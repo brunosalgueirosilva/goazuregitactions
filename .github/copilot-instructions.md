@@ -30,7 +30,7 @@ The user is learning Go, Azure, Bicep and GitHub Actions here. Depth per area:
 
 ## Reference project
 
-`/Users/bruno.silva@diconium.com/Source/iam/iamwa` is a production-grade version of the same architecture (Go BFF, React SPA, Bicep, GitHub Actions with OIDC). Use it as a pattern source, not as code to copy wholesale: keep this repo much simpler.
+`~/Source/iam/iamwa` is a production-grade version of the same architecture (Go BFF, React SPA, Bicep, GitHub Actions with OIDC). Use it as a pattern source, not as code to copy wholesale: keep this repo much simpler.
 
 ## Toolchain
 
