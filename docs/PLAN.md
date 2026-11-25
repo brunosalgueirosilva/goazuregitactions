@@ -152,8 +152,10 @@ AI scaffolds and builds it, runs the commands, and reports when it works.
 - Home page with a "Sign in" button that navigates to `/dashboard` (fake sign-in)
 - Dashboard with two buttons calling `/api/hello` and `/api/time`, printing status + JSON
 - Vite dev proxy `/api` → `http://localhost:8080`
+- Lint with Oxlint (Vite's default for React templates): `pnpm lint`
 
-**Test:** `go run .` in `backend/`, `pnpm dev` in `frontend/`, click through in the browser.
+**Test:** `go run .` in `backend/`, `pnpm dev` in `frontend/`, click through in the browser. Then
+`pnpm build` and open `http://localhost:8080` (Go serves `frontend/dist`); reload on `/dashboard`.
 
 ---
 

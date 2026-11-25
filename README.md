@@ -53,6 +53,7 @@ of a phase, or to start from it, check out its tag (and bring the docs as above)
 | `start` | Copilot agent and instructions only | Phase 0 (tooling) |
 | `phase-0` | `mise.toml` with Go, Node and pnpm pinned | Phase 1 (Go backend) |
 | `phase-1` | Go backend: API, SPA serving, request logging, graceful shutdown | Phase 2 (React frontend) |
+| `phase-2` | React frontend: Home with fake sign-in, Dashboard calling the API | Phase 3 (one container) |
 
 ```bash
 git switch -c my-run phase-1
