@@ -8,7 +8,8 @@ A minimal app to learn Azure, Go and GitHub Actions end to end: a Go backend ser
 - `frontend/` — React + TypeScript + Vite + Tailwind, pnpm. Two pages: Home (sign-in button) and Dashboard (buttons that call the API and print the response).
 - `infra/` — Bicep for the resource group's contents (ACR, Container Apps environment, Container App, Log Analytics).
 - `.github/workflows/` — PR checks, image build and push, deploy.
-- `.specs/PLAN.md` — the step-by-step learning plan and progress log. Git-ignored, so workspace search skips it: open it by path.
+- `docs/PLAN.md` — the course: phases and steps, generic for any learner.
+- `.specs/PROGRESS.md` — the learner's personal progress (current step, roles found, log). Git-ignored, so workspace search skips it: open it by path. Create it from the template in `docs/PLAN.md` if missing.
 
 ## Learning style
 
@@ -28,9 +29,9 @@ The user is learning Go, Azure, Bicep and GitHub Actions here. Depth per area:
 - No unit tests. Checks are `go vet`, builds, and manual `curl`/browser tests.
 - Sign-in stays fake (a button that navigates to the dashboard).
 
-## Reference project
+## Reference project (optional)
 
-`~/Source/iam/iamwa` is a production-grade version of the same architecture (Go BFF, React SPA, Bicep, GitHub Actions with OIDC). Use it as a pattern source, not as code to copy wholesale: keep this repo much simpler.
+If the user names a production-grade project with the same architecture (its local path may be in `.specs/PROGRESS.md`), use it as a pattern source, not as code to copy wholesale: keep this repo much simpler. Never mention its name, paths or internals in tracked files.
 
 ## Toolchain
 
@@ -43,4 +44,5 @@ The user is learning Go, Azure, Bicep and GitHub Actions here. Depth per area:
 - **No committed identifiers:** no subscription/tenant IDs, emails or secrets in tracked files. Workflows read GitHub Environment variables; local values go in a git-ignored `.env`.
 - **OIDC only:** GitHub authenticates to Azure with a federated credential; never create client secrets.
 - Every `az` command passes `--subscription` explicitly.
+- Git workflow: `main` only changes through PRs. One branch per phase (`phase-N-<name>`), squash-merged, then tagged `phase-N` (annotated). When a phase adds a tag, add its row to the tags table in `README.md`.
 - Commits: `<type>: <Summary>` (conventional commits). Ask before `git add`/`git commit`; never `git push`.

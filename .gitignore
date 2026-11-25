@@ -6,7 +6,7 @@
 !.vscode/extensions.json
 *.swp
 
-# Learning plan and notes (local only)
+# Personal progress notes (local only)
 .specs/
 
 # Local env and secrets

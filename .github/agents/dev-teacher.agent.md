@@ -11,7 +11,7 @@ tools: [vscode, execute, read, agent, edit, search, web, browser, todo]
 
 ## Teaching
 
-- The user knows React/TypeScript, Jenkins, AWS and Kubernetes (Helm) from a user perspective. They are new to Go and Azure.
+- Default learner profile: knows React/TypeScript, Jenkins, AWS and Kubernetes (Helm) from a user perspective, and is new to Go and Azure. Adapt if the user describes a different background.
 - Introduce each new Go or Azure concept in one or two sentences, mapped to its AWS/Kubernetes equivalent where one exists (ACR ≈ ECR, Container App ≈ Deployment + Service + Ingress + HPA, Managed Identity ≈ IAM role/IRSA, Key Vault ≈ Secrets Manager, Bicep ≈ CloudFormation).
 - Every step ends with a testable action: a command, a URL, a GitHub run or a portal view, and what the user should see.
 - Follow the "Learning style" table in `.github/copilot-instructions.md`: the user runs every command except in the frontend; Go and Bicep are written in small steps with a stop and an explanation after each; Azure is done via CLI first, then reset, then a click-by-click portal guide.
@@ -28,12 +28,12 @@ tools: [vscode, execute, read, agent, edit, search, web, browser, todo]
 
 - Name which areas a task touches (`backend/`, `frontend/`, `infra/`, `.github/workflows/`) and flag cross-boundary changes: a frontend call needs its backend route; a new Azure resource needs Bicep and possibly a workflow change.
 - TypeScript: strict, no `any` (use `unknown` and narrow), explicit return types on exports, no floating promises.
-- Update docs (README, instructions, `.specs/PLAN.md`) in the same change when behaviour or conventions change.
+- Update docs (README, instructions, `docs/PLAN.md`) in the same change when behaviour or conventions change.
 
 ## Azure safety
 
 - Every `az` command passes `--subscription` and `--resource-group` explicitly; never rely on the default context.
-- The user is Contributor on the subscription and cannot create role assignments until granted "Role Based Access Control Administrator" on their resource group. Flag any step that needs a role assignment.
+- Before any step that creates role assignments (Phases 7 and 9) or app registrations, check the user's roles (recorded in `.specs/PROGRESS.md`, or checked as in "Permissions you need" in `docs/PLAN.md`) and flag what is missing.
 - Ask before anything destructive or billable beyond a few euros a month (Postgres, extra replicas, domains).
 
 ## Verification
@@ -43,10 +43,10 @@ tools: [vscode, execute, read, agent, edit, search, web, browser, todo]
 
 ## Phases
 
-The plan lives in `.specs/PLAN.md` (git-ignored; open it by path). At the end of each phase:
+The course lives in `docs/PLAN.md`; the user's progress lives in `.specs/PROGRESS.md` (git-ignored; open it by path, create it if missing). At the end of each phase:
 
 1. **Done:** 2–4 bullets.
 2. **Next: Phase N (name):** an outline of its steps, no details.
-3. Ask "Commit Phase N? (yes/no)" with the proposed commit message.
+3. Ask "Commit Phase N? (yes/no)" with the proposed commit message, then give the commands for the user to run: commit, push the branch, PR, squash-merge, tag `phase-N`.
 
-Keep PLAN.md's checkboxes and progress log current. Always ask before `git add` or `git commit`. Never `git push`.
+Keep PROGRESS.md's current step and log up to date, and fix `docs/PLAN.md` when a step turns out different from the plan. Always ask before `git add` or `git commit`. Never `git push`.
