@@ -165,9 +165,18 @@ AI writes a multi-stage `Dockerfile` (Node builds the SPA, Go builds a static bi
 runtime) and `.dockerignore`. AI explains only what differs from Node images: static Go binaries,
 `CGO_ENABLED=0`, distroless, and why Apple Silicon must build `--platform linux/amd64` for Azure.
 
-**Test:** you run
-`docker build --platform linux/amd64 -t goazure:local . && docker run --rm -p 8080:8080 goazure:local`,
-open `http://localhost:8080`, reload on `/dashboard`, click both buttons.
+**Test:** you run (versions come from `mise.toml` through `--build-arg`)
+
+```bash
+docker build --platform linux/amd64 \
+  --build-arg NODE_VERSION="$(mise current node)" \
+  --build-arg GO_VERSION="$(mise current go)" \
+  --build-arg PNPM_VERSION="$(mise current pnpm)" \
+  -t goazure:local .
+docker run --rm -p 8080:8080 goazure:local
+```
+
+then open `http://localhost:8080`, reload on `/dashboard`, click both buttons.
 
 ---
 
@@ -187,7 +196,9 @@ You run each command after AI explains the resource and every flag.
   export ACR="acr<yourname>learn"   # 5-50 lowercase letters/digits, globally unique
   az acr create --subscription "$SUB" -g "$RG" -n "$ACR" --sku Basic --admin-enabled true
   az acr login --subscription "$SUB" -n "$ACR"
-  docker build --platform linux/amd64 -t "$ACR.azurecr.io/app:v1" .
+  docker build --platform linux/amd64 -t "$ACR.azurecr.io/app:v1" \
+    --build-arg NODE_VERSION="$(mise current node)" --build-arg GO_VERSION="$(mise current go)" \
+    --build-arg PNPM_VERSION="$(mise current pnpm)" .
   docker push "$ACR.azurecr.io/app:v1"
   ```
 - Container Apps environment (creates a Log Analytics workspace too):

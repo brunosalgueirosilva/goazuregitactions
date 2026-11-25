@@ -54,6 +54,7 @@ of a phase, or to start from it, check out its tag (and bring the docs as above)
 | `phase-0` | `mise.toml` with Go, Node and pnpm pinned | Phase 1 (Go backend) |
 | `phase-1` | Go backend: API, SPA serving, request logging, graceful shutdown | Phase 2 (React frontend) |
 | `phase-2` | React frontend: Home with fake sign-in, Dashboard calling the API | Phase 3 (one container) |
+| `phase-3` | Multi-stage `Dockerfile`: static Go binary + built SPA on distroless | Phase 4 (Azure) |
 
 ```bash
 git switch -c my-run phase-1
