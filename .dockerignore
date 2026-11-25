@@ -1,0 +1,12 @@
+# Only backend/ and frontend/ sources are needed in the build context.
+.git
+.github
+.specs
+.vscode
+docs
+*.md
+.env
+.env.*
+**/node_modules
+frontend/dist
+backend/bin
